@@ -1,5 +1,5 @@
 server.js
-message
+message.txt
 node_modules/
 .env
 .vercel
