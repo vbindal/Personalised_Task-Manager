@@ -15,8 +15,9 @@ const User = require('./models/user')
 
 const port = process.env.PORT || 3000
 const corsOptions = {
-  origin:['http://localhost:3001','http://localhost:3000'], // Replace with your front-end's origin
-  credentials: true, // Allow credentials (cookies, headers, etc.)
+  origin:['http://localhost:3001','http://localhost:3000'], 
+  methods : ["POST","GET"],
+  credentials: true, 
 };
 
 // Use the CORS middleware with the specified options
