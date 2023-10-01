@@ -36,7 +36,7 @@ const LogIn = () => {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response?.data));
+      // console.log(JSON.stringify(response?.data));
       localStorage.setItem("token", response.data.accessToken);
       const accessToken = response?.data.accessToken;
   
