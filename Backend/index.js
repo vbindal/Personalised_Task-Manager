@@ -16,7 +16,7 @@ const User = require('./models/user')
 const port = process.env.PORT || 3000
 const corsOptions = {
   origin:['http://localhost:3001','http://localhost:3000',
-  'https://personalised-task-manager-oyby.vercel.app/'], 
+  'https://personalised-task-manager-oyby.vercel.app'], 
   methods : ["POST","GET"],
   credentials: true, 
 };
