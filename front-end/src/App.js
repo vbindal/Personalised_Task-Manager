@@ -8,13 +8,13 @@ import { UserProvider } from './userProvider'
 function App() {
   return (
     <Router> 
-      <UserProvider>
+      {/* <UserProvider> */}
         <Routes>
           <Route path="/" element={<Register />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/home" element={<TaskForm />} />
         </Routes>
-      </UserProvider>
+      {/* </UserProvider> */}
     </Router>
   );
 }

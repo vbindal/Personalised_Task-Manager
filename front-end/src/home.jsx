@@ -1,68 +1,37 @@
-import React, { useState, useContext,useEffect } from "react";
-import axios from "axios";
-import UserContext from "./userProvider";
+import React from 'react'
+import Navbar from './partials/navbar'
+import Todo from './partials/Todo'
+import AddTodo from './partials/AddTodo'
 
-const TaskForm = () => {
-  const { user, setUser } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(true); 
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (token) {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
-
-      axios
-        .get("/userdata", { headers })
-        .then((response) => {
-          const userData = response.data;
-          setUser(userData);
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        })
-        .finally(() => {
-          setIsLoading(false); 
-        });
-    } else {
-      console.error("Token not found in localStorage. Please log in.");
-      setIsLoading(false);
-    }
-  }, [setUser]);
-
-  const [taskName, setTaskName] = useState("");
-
-  const handleTaskCreate = async () => {
-    try {
-      // Send a POST request to create a task, passing the user's ID as data
-      const response = await axios.post(`/api/v1/users/${user._id}`, {
-        taskName: taskName,
-      });
-
-      // Handle success (e.g., show a success message or update the UI)
-      console.log("Task created:", response.data);
-
-      // Clear the task input field
-      setTaskName("");
-    } catch (error) {
-      // Handle errors (e.g., show an error message)
-      console.error("Error creating task:", error);
-    }
-  };
-
+const home = () => {
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Task name"
-        value={taskName}
-        onChange={(e) => setTaskName(e.target.value)}
-      />
-      <button onClick={handleTaskCreate}>Create Task</button>
+      <Navbar/>
+      <div className="container">
+      <div className="row justify-content-md-center mt-4">
+        <Todo/>
+        <Todo/>
+        <Todo/>
+        <Todo/>
+        <Todo/>
+        <Todo/>
+        <Todo/>
+        <Todo/>
+        <Todo/>
+      </div>
+      </div>
+      <div className='' style={{position:'fixed',right:50,bottom:50,zIndex:1030}}>
+        <button
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        className='btn btn-online-light'
+        >Add</button>
+      </div>
+      
+        <AddTodo/>
     </div>
-  );
-};
+  )
+}
 
-export default TaskForm;
+export default home
