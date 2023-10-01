@@ -26,16 +26,16 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
-// app.get()
+
 //routes
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'front-end','src','index.js'));
 // });
 
 // Optionally, if you want to serve the Register.js file separately:
-// app.get('/', (req, res) => `{
-//   res.render(path.join(__dirname, 'frontEnd', 'Register.html'));
-// });
+app.get('/', (req, res) => {
+  res.json({message:'welcome to the server'})
+});
 
 app.get('/userdata', authenticateToken, async (req, res) => {
   try {
