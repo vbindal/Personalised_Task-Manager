@@ -61,7 +61,7 @@ For the backend:
 - React.js
 - React Router for routing
 - Axios for API requests
-- React Toastify for notifications
+
 
 ### Backend:
 
