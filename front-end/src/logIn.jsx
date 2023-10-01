@@ -44,8 +44,8 @@ const LogIn = () => {
   
       //console.log(localStorage.getItem("token"))
       //console.log(response.data.accessToken)
-      const uId = response?.data._id
-      setAuth({ email, pwd, uId,accessToken });
+      
+      setAuth({ email, pwd, accessToken });
       setEmail("");
       setPwd("");
       setSuccess(true);
