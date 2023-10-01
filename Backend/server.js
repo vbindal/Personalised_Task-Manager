@@ -16,7 +16,7 @@ const User = require('./models/user')
 const port = process.env.PORT || 3000
 const corsOptions = {
   origin:['http://localhost:3001','http://localhost:3000',
-  'https://personalised-task-manager-oyby.vercel.app'], 
+  'https://personalised-task-manager-oyby.vercel.app/'], 
   methods : ["POST","GET"],
   credentials: true, 
 };
@@ -26,9 +26,7 @@ app.use(cors(corsOptions));
 app.use(express.json({ limit: "30mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
 
-app.get('/',(req,res)=>{
-  res.send('Hello Welcome')
-})
+// app.get()
 //routes
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'front-end','src','index.js'));
