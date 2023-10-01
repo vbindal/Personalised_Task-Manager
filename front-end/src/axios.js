@@ -1,5 +1,5 @@
 import axios from 'axios'
 
 export default axios.create({
-    baseURL: 'http://localhost:3000' 
+    baseURL: 'https://personalised-task-manager-api.vercel.app' 
 });
