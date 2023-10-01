@@ -34,13 +34,13 @@ npm install
 
 1. Start the frontend server.
 
-cd front-end
-npm start
+  cd front-end
+  npm start
 
 2. Start the backend server.
 
-cd ../backend
-npm start
+  cd ../backend
+  npm start
 
 3. You can now access the application locally by opening your web browser and navigating to [http://localhost:3000](http://localhost:3000).
 
