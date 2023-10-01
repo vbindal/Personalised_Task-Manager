@@ -9,9 +9,9 @@ require('dotenv').config()
 const notFound = require('./middleware/not-found')
 const errorHandlerMiddleware = require('./middleware/error-handler')
 const cors = require('cors');
-const {authenticateToken} = require ('./controllers/auth')
-const User = require('./models/user')
+const cookieParser = require('cookie-parser');
 
+app.use(cookieParser());
 
 const port = process.env.PORT || 3000
 const corsOptions = {
@@ -37,19 +37,7 @@ app.get('/', (req, res) => {
   res.json({message:'welcome to the server'})
 });
 
-app.get('/userdata', authenticateToken, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.userId);
 
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
-    }
-    res.json(user);
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
 
 
 app.use('/api/v1/users',users)

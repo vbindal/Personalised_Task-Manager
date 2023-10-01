@@ -18,6 +18,7 @@ const Register = () => {
   const emailRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate()
+ 
 
   // const [user,setUser]= useState({
   //   email: "",password:""

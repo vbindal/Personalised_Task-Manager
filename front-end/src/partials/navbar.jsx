@@ -1,12 +1,15 @@
 import React from "react";
+import useAuth from "../useAuth";
 
 const Navbar = () => {
+  const { auth } = useAuth();
+
   return (
     <nav className="navbar navbar-expand-lg bg-light" data-bs-theme="light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <h2>
           TASK MANAGER
-        </a>
+        </h2>
         <button
           className="navbar-toggler"
           type="button"
@@ -18,19 +21,23 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarColor03">
+        <div className="collapse navbar-collapse" id="navbarColor03">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <a className="nav-link active" href="/home">
                 Home
                 <span className="visually-hidden">(current)</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="/login">
                 Logout
               </a>
             </li>
+            {auth &&
+            <h2> 
+                {auth.email}            
+            </h2>}
           </ul>
         </div>
       </div>

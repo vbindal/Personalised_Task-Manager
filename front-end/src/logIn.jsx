@@ -4,10 +4,12 @@ import AuthContext from "./AuthProvider";
 import axios from "./axios";
 import {Link} from "react-router-dom"
 
+
 const LOGIN_URL = "/api/v1/users/logIn";
 
+
 const LogIn = () => {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth} = useContext(AuthContext);
   const emailRef = useRef();
   const errRef = useRef();
   const [email, setEmail] = useState("");
@@ -37,12 +39,13 @@ const LogIn = () => {
         }
       );
       // console.log(JSON.stringify(response?.data));
-      localStorage.setItem("token", response.data.accessToken);
+      //localStorage.setItem("token", response.data.accessToken);
       const accessToken = response?.data.accessToken;
   
       //console.log(localStorage.getItem("token"))
       //console.log(response.data.accessToken)
-      setAuth({ email, pwd, accessToken });
+      const uId = response?.data._id
+      setAuth({ email, pwd, uId,accessToken });
       setEmail("");
       setPwd("");
       setSuccess(true);

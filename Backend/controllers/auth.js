@@ -55,8 +55,11 @@ const logIn = asyncWrapper(async(req,res)=>{
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: 2589200000
     });
+    res.cookie("token",token,{
+      httpOnly:true
+    })
     res.status(200).json({ message: "Login successful", token });
-    return token;
+    // return token;
 })
 
 const authforlogOut = asyncWrapper(async(req,res,next)=>{
@@ -69,7 +72,7 @@ const authforlogOut = asyncWrapper(async(req,res,next)=>{
 
     req.token = token
     req.user = user
-    res.clearCookie("jwt")
+    res.clearCookie("token")
     console.log("logOut Successfully")
     await req.user.save()
     
@@ -79,27 +82,26 @@ const authforlogOut = asyncWrapper(async(req,res,next)=>{
 
 
 
-// Middleware to validate and decode JWT token
-const authenticateToken = (req, res, next) => {
-  const token = req.headers.authorization;
+// const authenticateToken = (req, res, next) => {
+//   const token = req.headers.authorization;
 
-  if (!token) {
-    return res.sendStatus(401);
-  }
+//   if (!token) {
+//     return res.sendStatus(401);
+//   }
 
-  jwt.verify(token,process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.sendStatus(403); 
-    }
+//   jwt.verify(token,process.env.JWT_SECRET, (err, user) => {
+//     if (err) {
+//       return res.sendStatus(403); 
+//     }
 
-    req.user = user;
-    next();
-  });
-};
+//     req.user = user;
+//     next();
+//   });
+// };
 
 
 
 
 module.exports = {
-    signUp,logIn,authforlogOut,authenticateToken
+    signUp,logIn,authforlogOut
 }
