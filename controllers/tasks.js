@@ -1,13 +1,25 @@
 const Tasks = require("../models/Tasks");
+const User = require("../models/user")
 const asyncWrapper = require("../middleware/async");
 const {createCustomError} = require('../error/custom-error')
+
+
 const getAllTasks = asyncWrapper(async (req, res) => {
   const tasks = await Tasks.find({});
   res.status(200).json({ tasks });
 });
 
 const createTask = asyncWrapper(async (req, res) => {
+  
+  const userId = req.params.userId
+  console.log(req.user)
+  const user = await User.findById(userId)
+
+  if(!user)res.status(404).send('user not found')
+
   const Task = await Tasks.create(req.body);
+  user.tasks.push(Task._id)
+  await user.save()
   res.status(201).json({ Task });
 
   //res.json(req.body)
