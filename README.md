@@ -23,12 +23,12 @@ Before you begin, ensure you have the following installed:
 3. Install dependencies for the frontend and backend separately.
 
 For the frontend:
-cd front-end
-npm install
+  cd front-end
+  npm install
 
 For the backend:
-cd ../backend
-npm install
+  cd ../backend
+  npm install
 
 ### Running the Application
 
