@@ -5,7 +5,8 @@ import axios from '../axios'
 
 const AddTodo = () => {
   const {auth} = useAuth()
-  const CREATE_TASK = `/api/v1/tasks/$`
+  const userEmail = auth.email
+  const CREATE_TASK = `/api/v1/tasks/${userEmail}`
     const [taskDesc,setTaskDesc]=useState('')
     const handleSubmit = async () => {
       if (taskDesc === "") {
@@ -16,13 +17,12 @@ const AddTodo = () => {
 
       try {
         
-        console.log(auth.email)
+        console.log(userEmail)
         const task = {
           name: taskDesc,
         };
         await axios.post(CREATE_TASK, task);
         alert("Task created successfully!");
-      
         setTaskDesc("");
       } catch (error) {
         // Handle errors here, you can show an error message or toast notification

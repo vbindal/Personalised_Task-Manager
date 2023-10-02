@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 // import AuthContext from "./AuthProvider";
 import axios from "./axios";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const LOGIN_URL = "/api/v1/users/logIn";
@@ -15,8 +15,8 @@ const LogIn = () => {
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  // const location = useLocation();
+  //const from = location.state?.from?.pathname || "/";
 
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const LogIn = () => {
       
       setEmail("");
       setPwd("");
-      navigate(from, { replace: true });
+      navigate('/home');
     } catch (err) {
       if (!err?.response) {
         console.log(err);

@@ -11,10 +11,11 @@ const getAllTasks = asyncWrapper(async (req, res) => {
 
 const createTask = asyncWrapper(async (req, res) => {
   
-  const userEmail = req.params.userEmail
-  console.log(req.user)
-  const user = await User.findOne({userEmail})
-
+  const userEmail = req.params.email
+  console.log("email",userEmail)
+  const user = await User.findOne({email:userEmail})
+  // console.log(userEmail)
+  // console.log(user)
   if(!user)res.status(404).send('user not found')
 
   const Task = await Tasks.create(req.body);
