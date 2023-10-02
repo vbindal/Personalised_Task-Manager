@@ -12,6 +12,7 @@ const Home = () => {
   const GET_TASKS = `/api/v1/tasks/${userEmail}`;
   const [refreshList, setRefreshList] = useState();
 
+
   useEffect(() => {
     fetchTasksList();
   }, [refreshList]);
@@ -34,14 +35,21 @@ const Home = () => {
       console.error("Error fetching tasks:", error);
     }
   }
+  
 
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <div className="container">
         <div className="row justify-content-md-center mt-4">
           {Array.isArray(taskList) &&
-            taskList.map((tasks) => <Todo task={tasks} key={tasks._id} setRefreshList={setRefreshList}/>)}
+            taskList.map((tasks) => (
+              <Todo
+                task={tasks}
+                key={tasks._id}
+                setRefreshList={setRefreshList}
+              />
+            ))}
         </div>
       </div>
       <div
