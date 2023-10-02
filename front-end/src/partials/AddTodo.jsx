@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import useAuth from "../useAuth";
 import axios from '../axios'
-// import {ToastContainer,toast} from 'react-toastify'
 
-const AddTodo = () => {
+const AddTodo = ({setRefreshList}) => {
   const {auth} = useAuth()
   const userEmail = auth.email
   const CREATE_TASK = `/api/v1/tasks/${userEmail}`
-    const [taskDesc,setTaskDesc]=useState('')
+  const [taskDesc,setTaskDesc]=useState('')
+  
+
     const handleSubmit = async () => {
       if (taskDesc === "") {
         alert("Blank entry not allowed");
@@ -23,17 +24,18 @@ const AddTodo = () => {
         };
         await axios.post(CREATE_TASK, task);
         alert("Task created successfully!");
+        setRefreshList(new Date())
         setTaskDesc("");
       } catch (error) {
-        // Handle errors here, you can show an error message or toast notification
+     
         console.error("Error creating task:", error);
-        // toast.error("Error creating task");
+        
       }
     }
   return (
 
     <div className="modal mt-5" id="exampleModal">
-        {/* <ToastContainer/> */}
+       
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
@@ -59,7 +61,7 @@ const AddTodo = () => {
             </div>
           </div>
           <div className="modal-footer">
-            <button className="btn btn-secondary" onClick={handleSubmit}>Save Task</button>
+            <button className="btn btn-secondary" onClick={handleSubmit} data-bs-dismiss="modal">Save Task</button>
             <button className="btn btn-secondary" data-bs-dismiss="modal"
             onClick={()=>{setTaskDesc('')}}>
               Close

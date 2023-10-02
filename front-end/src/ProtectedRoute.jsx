@@ -9,7 +9,7 @@ const ProtectedRoute = () => {
   return (
         auth?.email
             ?<Outlet/>
-            :<Navigate to="/login" state={{from:location}} replace/>
+            :<Navigate to="/login"/>
   )
 }
 
