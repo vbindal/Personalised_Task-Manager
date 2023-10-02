@@ -41,7 +41,7 @@ const Home = () => {
       <div className="container">
         <div className="row justify-content-md-center mt-4">
           {Array.isArray(taskList) &&
-            taskList.map((tasks) => <Todo task={tasks} key={tasks._id} />)}
+            taskList.map((tasks) => <Todo task={tasks} key={tasks._id} setRefreshList={setRefreshList}/>)}
         </div>
       </div>
       <div

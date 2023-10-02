@@ -2,22 +2,21 @@
 import { useRef, useState, useEffect } from "react";
 // import AuthContext from "./AuthProvider";
 import axios from "./axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const LOGIN_URL = "/api/v1/users/logIn";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const { setAuth,auth } = useAuth();
+  const { setAuth, auth } = useAuth();
   const emailRef = useRef();
   const errRef = useRef();
   const [email, setEmail] = useState("");
   const [pwd, setPwd] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  // const location = useLocation();
-  //const from = location.state?.from?.pathname || "/";
-
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/home";
 
   useEffect(() => {
     emailRef.current.focus();
@@ -52,12 +51,11 @@ const LogIn = () => {
       //console.log(localStorage.getItem("token"))
       // console.log(response.data.accessToken)
 
-      setAuth({ email,pwd,accessToken });
-     
-      
+      setAuth({ email, pwd, accessToken });
+
       setEmail("");
       setPwd("");
-      navigate('/home');
+      navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response) {
         console.log(err);
@@ -74,49 +72,45 @@ const LogIn = () => {
     }
   };
   return (
-    <>
-      
-      <section>
-        <p
-          ref={errRef}
-          className={errMsg ? "errmsg" : "offscreen"}
-          aria-live="assertive"
-        >
-          {errMsg}
-        </p>
-        <h1>Log In</h1>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="text"
-            id="email"
-            ref={emailRef}
-            autoComplete="off"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            required
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            onChange={(e) => setPwd(e.target.value)}
-            value={pwd}
-            required
-          />
-          <button>Log In</button>
-        </form>
-        <p>
-          Need an Account?
-          <br />
-          <span className="line">
-            {/*put router link here*/}
-            <Link to="/">Sign Up</Link>
-          </span>
-        </p>
-      </section>
-      
-    </>
+    <section>
+      <p
+        ref={errRef}
+        className={errMsg ? "errmsg" : "offscreen"}
+        aria-live="assertive"
+      >
+        {errMsg}
+      </p>
+      <h1>Log In</h1>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="email">Email:</label>
+        <input
+          type="text"
+          id="email"
+          ref={emailRef}
+          autoComplete="off"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          required
+        />
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          onChange={(e) => setPwd(e.target.value)}
+          value={pwd}
+          required
+        />
+        <button>Log In</button>
+      </form>
+      <p>
+        Need an Account?
+        <br />
+        <span className="line">
+          {/*put router link here*/}
+          <Link to="/">Sign Up</Link>
+        </span>
+      </p>
+    </section>
   );
 };
 

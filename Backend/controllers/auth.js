@@ -63,23 +63,29 @@ const logIn = asyncWrapper(async(req,res)=>{
     //return token;
 })
 
-const authforlogOut = asyncWrapper(async(req,res,next)=>{
-    const token = req.cookies.jwt
-    const verifyUser = jwt.verify(token,process.env.JWT_SECRET)
-    console.log(verifyUser)
+// const authforlogOut = asyncWrapper(async(req,res,next)=>{
+//     const token = req.cookies.jwt
+//     const verifyUser = jwt.verify(token,process.env.JWT_SECRET)
+//     console.log(verifyUser)
     
-    const user = await User.findOne({id:verifyUser._id})
-    console.log(user.email)
+//     const user = await User.findOne({id:verifyUser._id})
+//     console.log(user.email)
 
-    req.token = token
-    req.user = user
-    res.clearCookie("token")
-    console.log("logOut Successfully")
-    await req.user.save()
+//     req.token = token
+//     req.user = user
+//     res.clearCookie("token")
+//     console.log("logOut Successfully")
+//     await req.user.save()
     
-    next()
+//     next()
     
-})
+// })
+const logout= asyncWrapper(async(req,res)=> {
+  
+  res.cookie("token", "", { expires: new Date(0), httpOnly: true });
+
+  res.status(200).json({ message: "Logged out successfully" });
+});
 
 
 
@@ -104,5 +110,5 @@ const authforlogOut = asyncWrapper(async(req,res,next)=>{
 
 
 module.exports = {
-    signUp,logIn,authforlogOut
+    signUp,logIn,logout
 }

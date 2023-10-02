@@ -10,7 +10,7 @@ const {
 } = require("../controllers/tasks");
 
 router.route('/:email').get(getAllTasks).post(createTask)
-router.route('/:email/:taskId').get(getTask).patch(updateTask).delete(deleteTask)
+router.route('/:taskId').get(getTask).patch(updateTask).delete(deleteTask)
 
 // router.route('/').get((req,res)=>{
 //     res.send("data")
