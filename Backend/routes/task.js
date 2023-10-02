@@ -9,8 +9,8 @@ const {
   deleteTask,
 } = require("../controllers/tasks");
 
-router.route('/:userId').get(getAllTasks).post(createTask)
-router.route('/:userId/:taskId').get(getTask).patch(updateTask).delete(deleteTask)
+router.route('/:email').get(getAllTasks).post(createTask)
+router.route('/:email/:taskId').get(getTask).patch(updateTask).delete(deleteTask)
 
 // router.route('/').get((req,res)=>{
 //     res.send("data")

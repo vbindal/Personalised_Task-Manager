@@ -1,22 +1,21 @@
-import './App.css';
-import { Route,Routes,BrowserRouter as Router } from "react-router-dom";
+import "./App.css";
+import { Route, Routes} from "react-router-dom";
 import Register from "./Register";
 import LogIn from "./logIn";
-import TaskForm from './home';
-
+import Home from "./home";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
-    <Router>
-        <Routes>
-          <Route path="/" element={<Register />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/home" element={<TaskForm />} />
-        </Routes>
-    </Router>
     
+      <Routes>
+        <Route path="/" element={<Register />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route element={<ProtectedRoute/>}>
+          <Route path="/home" element={<Home/>} />
+        </Route>
+      </Routes>
   );
 }
 
 export default App;
-

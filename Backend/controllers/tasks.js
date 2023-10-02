@@ -11,9 +11,9 @@ const getAllTasks = asyncWrapper(async (req, res) => {
 
 const createTask = asyncWrapper(async (req, res) => {
   
-  const userId = req.params.userId
+  const userEmail = req.params.userEmail
   console.log(req.user)
-  const user = await User.findById(userId)
+  const user = await User.findOne({userEmail})
 
   if(!user)res.status(404).send('user not found')
 

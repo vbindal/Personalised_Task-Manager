@@ -1,14 +1,34 @@
 import React, { useState } from "react";
+import useAuth from "../useAuth";
+import axios from '../axios'
 // import {ToastContainer,toast} from 'react-toastify'
 
 const AddTodo = () => {
+  const {auth} = useAuth()
+  const CREATE_TASK = `/api/v1/tasks/$`
     const [taskDesc,setTaskDesc]=useState('')
-    const handleSubmit=()=>{
-        console.log(taskDesc)
-        if(taskDesc===''){
-            alert('blank entry not allowed')
-            return
-        }
+    const handleSubmit = async () => {
+      if (taskDesc === "") {
+        alert("Blank entry not allowed");
+        return;
+      }
+
+
+      try {
+        
+        console.log(auth.email)
+        const task = {
+          name: taskDesc,
+        };
+        await axios.post(CREATE_TASK, task);
+        alert("Task created successfully!");
+      
+        setTaskDesc("");
+      } catch (error) {
+        // Handle errors here, you can show an error message or toast notification
+        console.error("Error creating task:", error);
+        // toast.error("Error creating task");
+      }
     }
   return (
 

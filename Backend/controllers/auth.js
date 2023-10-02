@@ -55,11 +55,12 @@ const logIn = asyncWrapper(async(req,res)=>{
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: 2589200000
     });
-    res.cookie("token",token,{
-      httpOnly:true
+    res.cookie('token',token,{
+      httpOnly:true,
+      expiresIn:2589200000
     })
     res.status(200).json({ message: "Login successful", token });
-    // return token;
+    //return token;
 })
 
 const authforlogOut = asyncWrapper(async(req,res,next)=>{
