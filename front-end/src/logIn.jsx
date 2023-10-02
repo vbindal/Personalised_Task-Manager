@@ -50,11 +50,17 @@ const LogIn = () => {
       const accessToken = response?.data.token;
       //console.log(accessToken)
       //console.log(localStorage.getItem("token"))
+<<<<<<< HEAD
       // console.log(response.data.accessToken)
 
       setAuth({ email,pwd,accessToken });
      
       
+=======
+      //console.log(response.data.accessToken)
+      
+      setAuth({ email, pwd, accessToken });
+>>>>>>> 7b6016dcee6331a60bfce2d2ca0d3cc55bb29915
       setEmail("");
       setPwd("");
       navigate(from, { replace: true });
