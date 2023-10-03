@@ -7,7 +7,7 @@ const jwt = require("jsonwebtoken");
 const signUp = asyncWrapper(async (req, res, next) => {
   const { email, password } = req.body;
 
-  const existingUser = await User.findOne({ email });
+  const existingUser = await User.findOne({ email: email });
   if (existingUser) {
     return res.status(409).json({
       message: "Username or email already exists.",
@@ -31,8 +31,9 @@ const signUp = asyncWrapper(async (req, res, next) => {
 
 const logIn = asyncWrapper(async (req, res) => {
   const cookies = req.cookies;
+  console.log(`cookie available at login: ${JSON.stringify(cookies)}`);
   const { email, password } = req.body;
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email:email });
 
   if (!user) {
     return res.status(401).json({ message: "Invalid email or password" });
@@ -78,13 +79,13 @@ const logout = asyncWrapper(async (req, res) => {
     return res.status(200).json({ message: "User is not logged in" });
   }
 
-  const refreshToken = cookies.token;
+  const rToken = cookies.token;
 
   try {
-    const foundUser = await User.findOneAndUpdate(
-      { refreshToken },
-      { $pull: { refreshToken: refreshToken } }
-    ).exec();
+    const foundUser = await User.findOne({
+      refreshToken: { $elemMatch: { $eq: rToken } }
+    }).exec();
+  
 
     if (!foundUser) {
       return res.status(404).json({ message: "No user found" });
@@ -116,10 +117,10 @@ const refreshTokens = asyncWrapper(async (req, res) => {
   const rToken = cookies.token;
 
   try {
-    const foundUser = await User.findOneAndUpdate(
-      { refreshToken: rToken },
-      { $pull: { refreshToken: rToken } }
-    ).exec();
+    const foundUser = await User.findOne({
+      refreshToken: { $elemMatch: { $eq: rToken } }
+    }).exec();
+  
 
     if (!foundUser) {
       return res.sendStatus(403); // Forbidden, as the token is not associated with any user
