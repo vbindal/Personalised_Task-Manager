@@ -30,8 +30,8 @@ const signUp = asyncWrapper(async (req, res, next) => {
 });
 
 const logIn = asyncWrapper(async (req, res) => {
-  const cookies = req.cookies;
-  console.log(`cookie available at login: ${JSON.stringify(cookies)}`);
+  // const cookies = req.cookies;
+  // console.log(`cookie available at login: ${JSON.stringify(cookies)}`);
   const { email, password } = req.body;
   const user = await User.findOne({ email:email });
 
