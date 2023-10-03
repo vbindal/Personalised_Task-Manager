@@ -1,6 +1,5 @@
-// import React from "react";
+import React from "react";
 import { useRef, useState, useEffect } from "react";
-// import AuthContext from "./AuthProvider";
 import axios from "./axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import useAuth from "./useAuth";

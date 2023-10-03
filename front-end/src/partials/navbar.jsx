@@ -8,16 +8,25 @@ const Navbar = () => {
     try {
       const LOGOUT_URL = "/api/v1/users/logout";
       const response = await axios.post(LOGOUT_URL);
-
+  
       if (response.status === 200) {
+        // Clear cookies regardless of server response
         document.cookie =
           "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setAuth({});
+        console.log("Cookies cleared.");
       }
     } catch (error) {
       console.error("Error logging out:", error);
+  
+      // Clear cookies even if there's an error
+      document.cookie =
+        "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      setAuth({});
+      console.log("Cookies cleared (even on error).");
     }
   };
+  
 
   return (
 
