@@ -46,12 +46,7 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarColor03">
           <ul className="navbar-nav me-auto">
-            <li className="nav-item">
-              <h2>
-                Home
-                <span className="visually-hidden">(current)</span>
-              </h2>
-            </li>
+            
             {auth.email && (
               <li className="nav-item">
                 <a
