@@ -75,3 +75,16 @@ For the backend:
 This project was developed by Vishal Bindal. You can find me on GitHub [here](https://github.com/vbindal).
 
 Enjoy managing your tasks with the Personalised Task Manager! If you encounter any issues or have suggestions for improvements, please feel free to open an issue on the GitHub repository.
+
+
+#Demo
+![Screenshot 2024-01-06 162458](https://github.com/vbindal/Personalised_Task-Manager/assets/77441928/c52b1cb2-4b6c-482e-a23f-efc71e7e8bb2)
+
+![Screenshot 2024-01-06 162545](https://github.com/vbindal/Personalised_Task-Manager/assets/77441928/7972dee9-02a7-4e6a-8d99-aeb3a9647853)
+
+![Screenshot 2024-01-06 162619](https://github.com/vbindal/Personalised_Task-Manager/assets/77441928/91653dbc-88cd-400c-b01b-10df9cac528c)
+
+![Screenshot 2024-01-06 162647](https://github.com/vbindal/Personalised_Task-Manager/assets/77441928/a4f2af15-c215-4b26-a6d4-a853753904b7)
+
+![Screenshot 2024-01-06 162701](https://github.com/vbindal/Personalised_Task-Manager/assets/77441928/ab2bc8d0-c902-4f6a-b022-7fd65061f915)
+
